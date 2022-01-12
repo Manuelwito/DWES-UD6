@@ -12,36 +12,91 @@ Añadir el método __clone(), encargado de realizar una copia por defecto del ob
 Comprobaremos en el constructor que los valores asignados estén dentro del rango y sean del tipo correspondiente. De no cumplirse en alguno de los casos mostraremos un error y terminaremos la ejecución.
  */
 
+include_once "class.dimensiones.php";
 
 class Local
 {
     private string $calle;
     private string $ciudad;
     private int $plantas;
-    private float $area;
+    // private float $area;
     private Dimensiones $dimensiones;
 
-    function __construct($calle, $ciudad, $plantas, $area, $dimensiones)
+    /**
+     * Constructor de la clase. Comprueba que el objeto dimensiones sea de tipo dimensiones en el set.
+     * 
+     */
+    function __construct($calle, $ciudad, $plantas, $dimensiones)
     {
-        $this->calle = $calle;
-        $this->ciudad = $ciudad;
-        $this->plantas = $plantas;
-        $this->area = $area;
-        $this->dimensiones = $dimensiones;
+            $this->calle = $calle;  
+            $this->ciudad= $ciudad;         
+            //Comprueba planta
+            if($plantas > 0 && $plantas <= 10){
+                $this->plantas = $plantas;
+            }
+            else{
+                echo "ERROR!! la calle no puede ser mayor que 10 ni menor que 0";
+                die();
+            }        
+            //$this->area = $area;
+            //Comprueba dimensiones
+            if($dimensiones instanceof Dimensiones){
+                $this->dimensiones = $dimensiones;
+            }
+            else{
+
+                echo "ERROR!! al introducir las dimensiones.";
+                die();
+            }
+
+
+        
+       
     }
 
-
+    /**
+     * solo de dimensiones. invocará al to string de dimensiones.
+     */
     function __get($atributo)
     {
+        if($atributo instanceof Dimensiones){
+                return "el valor de las dimensiones es: " . $this->dimensiones;
+        }
+        else{
+                return $this->$atributo;
+        } 
+      /*      case "area":
+                return $this->dimensiones->alto* $this->dimensiones->ancho;              
+      */         
+       
+    }
+
+    /**
+     * Metodo set para que se modifique la calle solo de 1 a 10 a través de un switch case que identifica si es ese atributo u otro.
+     * 
+     * TODO!!!
+     */
+    function __set($atributo, $valor)
+    {
+
         switch ($atributo) {
             case "dimensiones":
-                return "el valor de las dimensiones es: " . $this->dimensiones;
+                if($atributo instanceof Dimensiones){
+                    $this->dimensiones = $valor;
+                }
+                else{
+                    echo "error al introducir las dimensiones.";
+                }
                 break;
-            case "area":
-                return $this->dimensiones->alto* $this->dimensiones->ancho;              
+            case "calle":
+                if($valor > 0 && $valor <= 10){
+                    $this->calle=$valor;
+                }
+                else{
+                    echo "la calle no puede ser mayor que 10 ni menor que 0";
+                }        
                 break;   
-        }
-       
+        }            
     }
 
 
@@ -54,15 +109,34 @@ class Local
        return "<p>Ciudad: ".$this->ciudad."<br></p><p>Calle: ".$this->calle."<br></p><p>Plantas: ".$this->plantas."<br></p><p>Dimensiones: (".$this->dimensiones.")<br></p>";
     }
 
-
-
     /**
      * el método __clone(), encargado de realizar una copia por defecto del objeto Dimensiones.
      */
     function __clone()
-    {
-        
+    {     
         $this->dimensiones = clone $this->dimensiones;
     }
 
 }
+
+/*
+$objetoDimensiones = new Dimensiones(4, 5, 6);
+$local = new Local("Tetuan", "Sevilla", 1, $objetoDimensiones);
+
+//invocar al get:
+echo $local->dimensiones;
+echo "<br>";
+echo $local;
+echo "<br>";
+echo "<br>";
+echo "<br>";
+//set
+$local->calle=11;
+
+
+//invocar al get:
+echo $local->calle;
+echo "<br>";
+echo $local;
+echo "<br>";
+*/

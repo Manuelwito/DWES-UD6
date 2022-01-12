@@ -44,7 +44,7 @@ class Dimensiones
     }
 
 }
-
+/*
 $objetoDimensiones = new Dimensiones(-4, 5, 6);
 
 //invocar al get:
@@ -64,4 +64,4 @@ echo $objetoDimensiones->alto;
 echo "<br>";
 echo $objetoDimensiones->ancho;
 echo "<br>";
-echo $objetoDimensiones->largo;
+echo $objetoDimensiones->largo;*/
