@@ -18,7 +18,6 @@ class Local
     private string $calle;
     private string $ciudad;
     private int $plantas;
-
     private Dimensiones $dimensiones;
 
     /**
@@ -37,19 +36,14 @@ class Local
                 echo "ERROR!! la calle no puede ser mayor que 10 ni menor que 0";
                 die();
             }        
-            //$this->area = $area;
             //Comprueba dimensiones
             if($dimensiones instanceof Dimensiones){
                 $this->dimensiones = $dimensiones;
             }
             else{
-
                 echo "ERROR!! al introducir las dimensiones.";
                 die();
             }
-
-
-        
        
     }
 
@@ -64,10 +58,6 @@ class Local
         else{
                 return $this->$atributo;
         } 
-      /*      case "area":
-                return $this->dimensiones->alto* $this->dimensiones->ancho;              
-      */         
-       
     }
 
     /**
@@ -77,7 +67,6 @@ class Local
      */
     function __set($atributo, $valor)
     {
-
         switch ($atributo) {
             case "dimensiones":
                 if($atributo instanceof Dimensiones){
@@ -101,7 +90,7 @@ class Local
 
     /**
      * Método __toString() que compondrá una cadena con las dimensiones de la siguiente forma:
-      *  <p>Ciudad: <valor><br></p><p>Calle: <valor><br></p><p>Plantas: <valor><br></p><p>Dimensiones: (<valor>)<br></p>
+     *  <p>Ciudad: <valor><br></p><p>Calle: <valor><br></p><p>Plantas: <valor><br></p><p>Dimensiones: (<valor>)<br></p>
      */
     function __toString()
     {
