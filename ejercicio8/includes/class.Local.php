@@ -12,14 +12,13 @@ Añadir el método __clone(), encargado de realizar una copia por defecto del ob
 Comprobaremos en el constructor que los valores asignados estén dentro del rango y sean del tipo correspondiente. De no cumplirse en alguno de los casos mostraremos un error y terminaremos la ejecución.
  */
 
-include_once "class.dimensiones.php";
 
 class Local
 {
     private string $calle;
     private string $ciudad;
     private int $plantas;
-    // private float $area;
+
     private Dimensiones $dimensiones;
 
     /**
@@ -102,7 +101,7 @@ class Local
 
     /**
      * Método __toString() que compondrá una cadena con las dimensiones de la siguiente forma:
-        <p>Ciudad: <valor><br></p><p>Calle: <valor><br></p><p>Plantas: <valor><br></p><p>Dimensiones: (<valor>)<br></p>
+      *  <p>Ciudad: <valor><br></p><p>Calle: <valor><br></p><p>Plantas: <valor><br></p><p>Dimensiones: (<valor>)<br></p>
      */
     function __toString()
     {

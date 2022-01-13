@@ -9,17 +9,11 @@
  */
 
 
-function __autoload($name) {
-   include_once 'includes/class.' . $name . '.php';
-}
+
 
 class LocalComercial extends Local
 {
    
-    private string $calle;
-    private string $ciudad;
-    private int $plantas;
-    private Dimensiones $dimensiones;
     private string $razonsocial;
     private string $numerolicencia;
 
@@ -29,40 +23,22 @@ class LocalComercial extends Local
      */
     function __construct($calle, $ciudad, $plantas, $dimensiones, $razonsocial, $numerolicencia)
     {
-            $this->calle = $calle;  
-            $this->ciudad= $ciudad;         
-            //Comprueba planta
-            if($plantas > 0 && $plantas <= 10){
-                $this->plantas = $plantas;
-            }
-            else{
-                echo "ERROR!! la calle no puede ser mayor que 10 ni menor que 0";
-                die();
-            }        
-            //Comprueba dimensiones
-            if($dimensiones instanceof Dimensiones){
-                $this->dimensiones = $dimensiones;
-            }
-            else{
-
-                echo " ERROR!! al introducir las dimensiones.";
-                die();
-            }
-
-            if(is_string($razonsocial)){
-                $this->razonsocial = $razonsocial;
-            }
-            else{
-                echo " ERROR!! al introducir las razon social.";
-                die();
-            }
-            if(is_string($numerolicencia)){
-                $this->numerolicencia = $numerolicencia;
-            }
-            else{
-                echo " ERROR!! al introducir las numero licencia.";
-                die();
-            }
+        parent::__construct($calle, $ciudad, $plantas, $dimensiones);
+      
+        if(is_string($razonsocial)){
+            $this->razonsocial = $razonsocial;
+        }
+        else{
+            echo " ERROR!! al introducir las razon social.";
+            die();
+        }
+        if(is_string($numerolicencia)){
+            $this->numerolicencia = $numerolicencia;
+        }
+        else{
+            echo " ERROR!! al introducir las numero licencia.";
+            die();
+        }     
     }
 
 
@@ -75,7 +51,7 @@ class LocalComercial extends Local
     
 }
 
-
+/*
 
 $objetoDimensiones = new Dimensiones(4, 5, 6);
 $localcomercial = new LocalComercial("Tetuan", "Sevilla", 1, $objetoDimensiones, "panaderia", "adfae214231");
@@ -97,3 +73,4 @@ echo "<br>";
 echo $localcomercial;
 echo "<br>";
 
+*/
