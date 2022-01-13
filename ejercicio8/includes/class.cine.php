@@ -13,7 +13,11 @@ POR AQUÍ!!!!
  */
 
 
- Class Cine extends LocalComercial{
+function __autoload($name) {
+      include_once 'includes/class.' . $name . '.php';
+   }
+
+Class Cine extends LocalComercial{
     
     private int $aforosala;
 

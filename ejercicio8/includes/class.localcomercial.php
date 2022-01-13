@@ -8,8 +8,11 @@
 
  */
 
-include_once "class.local.php";
-include_once "class.dimensiones.php";
+
+function __autoload($name) {
+   include_once 'includes/class.' . $name . '.php';
+}
+
 class LocalComercial extends Local
 {
    
