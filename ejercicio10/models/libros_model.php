@@ -1,7 +1,17 @@
 <?php
-        $user='root';
-        $password = 'root';
-        $db = new PDO('mysql:host=localhost;dbname=biblioteca', $user, $password);
-        $result = $db->query('SELECT titulo, precio FROM libros');
-        while ($libro = $result->fetch())
-            $libros[] = $libro;
+        
+     
+
+        function getConnection(){
+            $user='root';
+            $password = 'root';
+            return new PDO('mysql:host=localhost;dbname=biblioteca', $user, $password);
+        }
+
+        function getLibros(){
+            $db = getConnection();
+            $result = $db->query('SELECT titulo, precio FROM libros');
+            while ($libro = $result->fetch())
+                $libros[] = $libro;
+            return $libros;
+            }
