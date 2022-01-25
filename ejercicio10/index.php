@@ -33,10 +33,18 @@
         try{
                 if ( is_file( $controller ))
                 require_once($controller);
+
+
                 else
                         throw new Exception("la accion no existe - 404 not found");
                 
-        } 
+                //Si la variable $action es una funcion la ejecutamos o detenemos el escript 
+
+                if ( is_callable($action))
+                        $action();
+                else
+                        throw new Exception("la accion no existe - 404 not found");
+                } 
         catch (Exception $e){
                 echo 'Excepcion capturada: '. $e->getMessage(). "\n";
         }
