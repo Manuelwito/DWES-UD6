@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>Catálogo libros</title>
+    <title>Catálogo Instrumentos</title>
 </head>
 
 <body>
@@ -15,7 +15,7 @@
             <th>FABRICACION</th>
             <th>NUMERO DE SERIE</th>
             <th>PRECIO</th>
-         
+
         </tr>
         <?php foreach ($instrumentos as $instrumento) : ?>
             <tr>
@@ -26,7 +26,10 @@
                 <td><?php echo $instrumento['fabricacion'] ?></td>
                 <td><?php echo $instrumento['num_serie'] ?></td>
                 <td><?php echo $instrumento['precio'] ?></td>
+                <td><a href="index.php?controller=instrumentos&action=ver&id=<?php echo $instrumento['id'] ?>">detalle</a></td>
+                <td><a href="index.php?controller=instrumentos&action=update&id=<?php echo $instrumento['id'] ?>">editar</a></td>
+                <td><a href="delete.php?id=<?php echo $instrumento['id'] ?>">borrar</a></td>
             </tr>
-        <?php endforeach;?>
+        <?php endforeach; ?>
     </table>
 </body>

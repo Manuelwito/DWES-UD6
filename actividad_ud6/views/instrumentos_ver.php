@@ -1,6 +1,6 @@
 <html>
    <head>
-   <title>Catálogo libros</title>
+   <title>Catálogo Instrumentos</title>
 </head>
 
 <body>

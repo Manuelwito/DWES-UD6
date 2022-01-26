@@ -21,10 +21,10 @@ function getInstrumentos()
 }
 
 /**FUNCIÓN QUE RECIBE LOS DATOS DE UN INSTRUMENTO Y LOS INSERTA EN LA BASE DE DATOS A TRAVÉS DE UNA CONEXION Y DE UNA SENTENCIA SQL */
-function insertaElemento($tipo, $marca, $modelo, $fabricacion, $num_serie, $precio, $imagen)
+function insertaElemento($tipo, $marca, $modelo, $fabricacion, $num_serie, $precio)
 {
     $db = getConnection();
-    $consulta = $db->prepare("INSERT INTO instrumentos (tipo, marca, modelo, fabricacion, num_serie, precio, imagen) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $consulta = $db->prepare("INSERT INTO `instrumentos` (`tipo`, `marca`, `modelo`, `fabricacion`, `num_serie`, `precio`, `imagen`) VALUES (?, ?, ?, ?, ?, ?, '');");
 
     $consulta->bindParam(1, $tipo);
     $consulta->bindParam(2, $marca);
@@ -32,7 +32,7 @@ function insertaElemento($tipo, $marca, $modelo, $fabricacion, $num_serie, $prec
     $consulta->bindParam(4, $fabricacion);
     $consulta->bindParam(5, $num_serie);
     $consulta->bindParam(6, $precio);
-    $consulta->bindParam(7, $imagen);
+    //   $consulta->bindParam(7, $imagen);
 
     $consulta->execute();
     $last_id = $db->lastInsertId();
@@ -44,10 +44,39 @@ function insertaElemento($tipo, $marca, $modelo, $fabricacion, $num_serie, $prec
 
 function getInstrumento($id)
 {
-   $db = getConnection();
-   $query = 'SELECT * FROM instrumentos WHERE id = ?';
-   $stmt = $db->prepare($query);
-   $stmt->execute(array($id));
-   $instrumento = $stmt->fetch();
-   return $instrumento;
+    $db = getConnection();
+    $query = 'SELECT * FROM instrumentos WHERE id = ?';
+    $stmt = $db->prepare($query);
+    $stmt->execute(array($id));
+    $instrumento = $stmt->fetch();
+    return $instrumento;
+}
+
+/*
+**editarElemento** que recibirá todos los datos que componen a un elemento y actualizará todos sus valores, 
+devolverá true en caso de que se haya editado correctamente y false en caso contrario.
+*/
+function editElement($id, $tipo, $marca, $modelo, $fabricacion, $num_serie, $precio)
+{
+    $db = getConnection();
+    $consulta = $db->prepare('UPDATE `instrumentos` SET `tipo` = ?, `marca` = ?, `modelo` = ?, `fabricacion` = ?, `num_serie` = ?, `precio` = ? WHERE `instrumentos`.`id` = ? ;');
+    $consulta->bindParam(1, $tipo);
+    $consulta->bindParam(2, $marca);
+    $consulta->bindParam(3, $modelo);
+    $consulta->bindParam(4, $fabricacion);
+    $consulta->bindParam(5, $num_serie);
+    $consulta->bindParam(6, $precio);
+   // $consulta->bindParam(7, $imagen);
+    $consulta->bindParam(7, $id);
+
+    $editados = $consulta->execute();
+
+    if ($editados > 0) {
+        echo "se han editado $editados instrumentos";
+    } else {
+        echo "no se han editado ninguno algo fue mal";
+    }
+
+    $conn = null;
+
 }

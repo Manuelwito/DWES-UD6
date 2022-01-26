@@ -13,9 +13,9 @@
 <body>
     <nav>
         <ul>
-            <li><a href="index.php">Página principal</a></li>
+            <li><a href="../index.php">Página principal</a></li>
             <li><a class="active" href="create.php">Nuevo instrumento</a></li>
-            <li><a href="list.php">Lista de instrumentos</a></li>
+            <li><a href="../index.php">Lista de instrumentos</a></li>
             <li><a href="import.php">Importar instrumentos</a></li>
         </ul>
     </nav>
@@ -30,7 +30,7 @@
     $fabricacion = "";
     $num_serie = "";
     $precio = "";
-    $imagen = "";
+    // $imagen = "";
 
 
     function filtrado($datos)
@@ -43,17 +43,17 @@
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-        $nombreFoto = $_FILES["fileToUpload"]["name"];
-        $tmp = $_FILES["fileToUpload"]["tmp_name"];
+//        $nombreFoto = $_FILES["fileToUpload"]["name"];
+  //      $tmp = $_FILES["fileToUpload"]["tmp_name"];
 
 
-        if (move_uploaded_file($tmp, "images/" . $nombreFoto)) {
-            chmod("images/" . $nombreFoto, 0777);
+    //    if (move_uploaded_file($tmp, "images/" . $nombreFoto)) {
+      //      chmod("images/" . $nombreFoto, 0777);
 
-            echo "The file " . htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " has been uploaded.";
-        } else {
-            echo "Sorry, there was an error uploading your file.";
-        }
+        //    echo "The file " . htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " has been uploaded.";
+    //    } else {
+    //        echo "Sorry, there was an error uploading your file.";
+    //    }
 
         $tipo = filtrado($_POST["tipo"]);
         $marca = filtrado($_POST["marca"]);
