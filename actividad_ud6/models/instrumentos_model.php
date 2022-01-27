@@ -13,7 +13,6 @@ function getConnection()
 function getInstrumentos()
 {
     $db = getConnection();
-    echo "conectaado";
     $result = $db->query('SELECT * FROM instrumentos');
     while ($instrumento = $result->fetch())
         $instrumentos[] = $instrumento;
@@ -66,7 +65,7 @@ function editElement($id, $tipo, $marca, $modelo, $fabricacion, $num_serie, $pre
     $consulta->bindParam(4, $fabricacion);
     $consulta->bindParam(5, $num_serie);
     $consulta->bindParam(6, $precio);
-   // $consulta->bindParam(7, $imagen);
+    // $consulta->bindParam(7, $imagen);
     $consulta->bindParam(7, $id);
 
     $editados = $consulta->execute();
@@ -78,5 +77,27 @@ function editElement($id, $tipo, $marca, $modelo, $fabricacion, $num_serie, $pre
     }
 
     $conn = null;
+}
 
+/** FUNCIÓN QUE RECIBE UN ID DE UN INSTRUMENTO DE LA BASE DE DATOS Y A TRAVÉS DE UNA SENTENCIA SQL ELIMINA ESE ARTÍCULO
+ * RETURN: boolean true si se ha eliminado correctamente.
+ *  
+ * @param id información del instrumento que se desea eliminar.
+ * 
+ */
+function deleteElement($id)
+{
+    $db = getConnection();
+    $consulta = $db->prepare("DELETE FROM `instrumentos` WHERE `id` = ? ;");
+    $consulta->bindParam(1, $id);
+
+    $borrados = $consulta->execute();
+
+    if ($borrados > 0) {
+
+        echo "se han eliminado $borrados";
+    } else {
+        echo "no se han eliminado";
+    }
+    $conn = null;
 }

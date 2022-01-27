@@ -11,15 +11,7 @@
 </head>
 
 <body>
-    <nav>
-        <ul>
-            <li><a href="../index.php">Página principal</a></li>
-            <li><a href="create.php">Nuevo elemento</a></li>
-            <li><a href="../index.php">Lista de instrumentos</a></li>
-            <li><a href="import.php">Importar elementos</a></li>
-        </ul>
-    </nav>
-
+    
     <?php
 
     function filtrado($datos)
@@ -50,23 +42,9 @@
         //        }
         //    }
 
-
-        editarElemento(
-            $_POST["id"],
-            filtrado($_POST["tipo"]),
-            filtrado($_POST["marca"]),
-            filtrado($_POST["modelo"]),
-            filtrado($_POST["fabricacion"]),
-            filtrado($_POST["num_serie"]),
-            filtrado($_POST["precio"]),
-            $nombreFoto
-        );
-
-
         header("Location: /actividad_ud6/index.php");
     }
     ?>
-
     <form action="index.php?controller=instrumentos&action=editar" method="POST" class="form-register" enctype="multipart/form-data">
 
         <h2 class="form-titulo">Características:</h2>

@@ -28,7 +28,7 @@
                 <td><?php echo $instrumento['precio'] ?></td>
                 <td><a href="index.php?controller=instrumentos&action=ver&id=<?php echo $instrumento['id'] ?>">detalle</a></td>
                 <td><a href="index.php?controller=instrumentos&action=update&id=<?php echo $instrumento['id'] ?>">editar</a></td>
-                <td><a href="delete.php?id=<?php echo $instrumento['id'] ?>">borrar</a></td>
+                <td><a href="index.php?controller=instrumentos&action=delete&id=<?php echo $instrumento['id'] ?>">borrar</a></td>
             </tr>
         <?php endforeach; ?>
     </table>

@@ -15,7 +15,6 @@
             <li><a class="active" href="index.php">Pagina principal</a></li>
             <li><a href="views/instrumentos_crear.php">Nuevo instrumento</a></li>
             <li><a href="index.php">Listar el inventario de instrumentos</a></li>
-            <li><a href="import.php">Importar instrumentos</a></li>
         </ul>
     </nav>
     <h1>The music store</h1>
