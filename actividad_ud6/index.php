@@ -26,10 +26,10 @@
       define ('CONTROLLERS_FOLDERS', "controllers/");
 
       //si no se indica un controlador, este es el controlador que se usará
-      define('DEFAULT_CONTROLLER', "instrumentos");
+      define('DEFAULT_CONTROLLER', "usuarios");
 
       //Si no se indica una acción, esta acción es la que se usará
-      define("DEFAULT_ACTION", "listar");
+      define("DEFAULT_ACTION", "login");
 
 
       //Obtenemos el controlador.
